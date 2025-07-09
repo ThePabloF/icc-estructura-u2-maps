@@ -1,6 +1,8 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Ejercicios {
 
@@ -28,7 +30,16 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        
+        Map<Character,Integer> mapa = new TreeMap<>();
+
+        char[] palabra1 = str1.toCharArray();
+        char[] palabra2 = str2.toCharArray();
+
+        
+
+
+    
 
     }
 
