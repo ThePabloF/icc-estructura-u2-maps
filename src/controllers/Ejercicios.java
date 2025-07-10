@@ -30,18 +30,24 @@ public class Ejercicios {
      * frecuencia.
      */
     public static boolean areAnagrams(String str1, String str2) {
-        
-        Map<Character,Integer> mapa = new TreeMap<>();
+    if (str1.length() != str2.length()) return false;
 
-        char[] palabra1 = str1.toCharArray();
-        char[] palabra2 = str2.toCharArray();
+    Map<Character, Integer> mapa = new HashMap<>();
 
-        
-
-
-    
-
+    for (char c : str1.toCharArray()) {
+        mapa.put(c, mapa.getOrDefault(c, 0) + 1);
     }
+
+    for (char c : str2.toCharArray()) {
+        if (!mapa.containsKey(c)) return false;
+
+        mapa.put(c, mapa.get(c) - 1);
+        if (mapa.get(c) < 0) return false;
+    }
+
+    return true;
+}
+
 
     /*
      * Dado un array de números enteros y un objetivo, retorna los índices de dos
@@ -59,8 +65,19 @@ public class Ejercicios {
      * Output: null
      */
     public int[] sumatoriaDeDos(int[] nums, int objetivo) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    Map<Integer, Integer> mapa = new HashMap<>();
+
+    for (int i = 0; i < nums.length; i++) {
+        int complemento = objetivo - nums[i];
+        if (mapa.containsKey(complemento)) {
+            return new int[] { mapa.get(complemento), i };
+        }
+        mapa.put(nums[i], i);
     }
+
+    return null;
+}
+
 
     /**
      * Cuenta la frecuencia de cada caracter en la cadena recibida y
@@ -71,8 +88,15 @@ public class Ejercicios {
      * Output: {h=1, o=1, l=1, a=1}
      */
     public void contarCaracteres(String texto) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    Map<Character, Integer> frecuencia = new HashMap<>();
+
+    for (char c : texto.toCharArray()) {
+        frecuencia.put(c, frecuencia.getOrDefault(c, 0) + 1);
     }
+
+    System.out.println(frecuencia);
+}
+
 
     /**
      * Verifica si dos palabras son anagramas.
@@ -83,6 +107,22 @@ public class Ejercicios {
      * Output: true
      */
     public boolean sonAnagramas(String palabra1, String palabra2) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    if (palabra1.length() != palabra2.length()) return false;
+
+    Map<Character, Integer> mapa = new HashMap<>();
+
+    for (char c : palabra1.toCharArray()) {
+        mapa.put(c, mapa.getOrDefault(c, 0) + 1);
     }
+
+    for (char c : palabra2.toCharArray()) {
+        if (!mapa.containsKey(c)) return false;
+
+        mapa.put(c, mapa.get(c) - 1);
+        if (mapa.get(c) < 0) return false;
+    }
+
+    return true;
+}
+
 }
